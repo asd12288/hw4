@@ -80,7 +80,7 @@ class DynamicArray {
 
 
     Result insert(int index, int value) {
-        if(index >= size){
+        if(index >= size || index < 0){
             return OUT_OF_BOUNDS;
         }
        
@@ -88,25 +88,42 @@ class DynamicArray {
             resize();
         }
 
-
-        // [10] []  []  [] 
-        // 0    1   2   3
-        
-        for(int i = index + 1 ; i <= size ; i++) {
-            data[i] = data[i - 1];
+        for(int i  = size; i > index; i--) {
+            data[i] = data[i-1];
         }
 
         data[index] = value;
-        size = size + 1;
+        size++;
         return SUCCESS;
     }
 
     Result remove(int index) {
+
+        if(index >= size || index < 0){
+            return OUT_OF_BOUNDS;
+        }
+
+        for(int i = index; i < size; i++) {
+            data[i] = data[i+1];
+        }
+        data[size-1] = 0;
+        size--;
+    
+
         return SUCCESS;
     }
 
     Result find(int value, int& outIndex) {
-         return SUCCESS;
+
+        for(int i = 0; i < size; i++) {
+            if(data[i] == value) {
+                outIndex = i;
+                return SUCCESS;
+            }
+        }
+
+        return NOT_FOUND;
+
     }
 
     void print() {
