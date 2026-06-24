@@ -1,0 +1,16 @@
+Initial array: [10, 30, 40]
+
+--- Testing insert() ---
+Inserting 20 at index 1. Result: SUCCESS
+Array after insert: [10, 20, 30, 40]
+Inserting at index 10. Result: OUT_OF_BOUNDS
+
+--- Testing remove() ---
+Removing element at index 2 (value 30). Result: SUCCESS
+Array after removal: [10, 20, 40]
+Removing at index -1. Result: OUT_OF_BOUNDS
+
+--- Testing find() ---
+Finding value 40. Result: SUCCESS
+Found at index: 2
+Finding value 100. Result: NOT_FOUND
