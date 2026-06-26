@@ -23,7 +23,6 @@ class DynamicArray {
         DynamicArray();
         DynamicArray(int initialCapacity);
         DynamicArray(const DynamicArray& orgArray);
-
         // Destructor  
         ~DynamicArray();
 
@@ -38,7 +37,6 @@ class DynamicArray {
         void print() const;
         int& getAt(int index);
 };    
-
 
 
 #endif

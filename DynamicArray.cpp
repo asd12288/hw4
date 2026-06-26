@@ -1,5 +1,8 @@
 #include "DynamicArray.h"
+#include <cstdlib>
 #include <iostream>
+
+using namespace std;
 
 // Private Helper
 void DynamicArray::resize()
@@ -21,20 +24,20 @@ void DynamicArray::resize()
 
 // Constructors
 DynamicArray::DynamicArray()
-    : size(0), capacity(2), data(new int[2])
+    : data(new int[2]), size(0), capacity(2)
 {
 }
 
 DynamicArray::DynamicArray(int initialCapacity)
-    : size(0), capacity(initialCapacity ? initialCapacity <= 0 : 1), data(new int[initialCapacity])
+    : data(new int[initialCapacity > 0 ? initialCapacity : 2]),
+      size(0),
+      capacity(initialCapacity > 0 ? initialCapacity : 2)
 {
 }
 
 DynamicArray::DynamicArray(const DynamicArray& orgArray)
-    : size(orgArray.size), capacity(orgArray.capacity)
+    : data(new int[orgArray.capacity]), size(orgArray.size), capacity(orgArray.capacity)
 {
-    data = new int[capacity];
-
     for (int i = 0; i < size; i++)
     {
         data[i] = orgArray.data[i];
@@ -134,24 +137,27 @@ DynamicArray::Result DynamicArray::find(int value, int& outIndex) const
 
 void DynamicArray::print() const
 {
-    std::cout << "[";
+    cout << "[";
     for (int i = 0; i < size; i++)
     {
-        std::cout << data[i];
+        cout << data[i];
         if (i < size - 1)
         {
-            std::cout << ", ";
+            cout << ", ";
         }
     }
 
-    std::cout << "]" << std::endl;
+    cout << "]" << endl;
 }
 
 
-int& DynamicArray::getAt(int index) {
-
-
-    if(data[index]) {
-        return index;
+int& DynamicArray::getAt(int index)
+{
+    if (index < 0 || index >= size)
+    {
+        cerr << "error" << endl;
+        exit(1);
     }
+
+    return data[index];
 }

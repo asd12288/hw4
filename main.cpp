@@ -12,6 +12,8 @@ void printResult(DynamicArray::Result res) {
 
 int main() {
     DynamicArray arr;
+
+
     arr.append(10);
     arr.append(30);
     arr.append(40);
